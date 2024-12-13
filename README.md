@@ -2,6 +2,9 @@
  Consumo de API's con Flutter <img src = 'https://github.com/user-attachments/assets/cd296f57-187a-44a9-a84f-05e873f23aba' height='35px'>
 </h1>
 
+![492shots_so](https://github.com/user-attachments/assets/1be0b5f3-d7aa-4ed5-8794-a2a43ba85121)
+
+
 
 > [!IMPORTANT]
 > **Planteamiento del problema**
@@ -39,5 +42,7 @@
 
 🚮 **Creacion de la Aplicación Flutter**
 >   clonar el respositorio y navegar al directorio
+> 
 >   instalar las dependencias con el comando "flutter pun get"
+> 
 >   ejecutar la aplicacion con "fultter run"
