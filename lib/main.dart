@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
         title: Text('API Navigation Example'),
       ),
       body: Center(
-        child: Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
