@@ -92,45 +92,88 @@ class _PokemonSearchScreenState extends State<PokemonSearchScreen> {
         ],
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
-          : _errorMessage != null
-              ? Center(child: Text(_errorMessage!))
-              : _selectedPokemonDetails == null
-                  ? Center(child: Text('Busca un Pokémon para ver sus detalles.'))
-                  : SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _selectedPokemonDetails!['image'] != null
-                              ? Image.network(_selectedPokemonDetails!['image'])
-                              : Icon(Icons.image_not_supported, size: 100),
-                          SizedBox(height: 10),
-                          Text(
-                            _selectedPokemonDetails!['name'],
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text('Altura: ${_selectedPokemonDetails!['height']}'),
-                          Text('Peso: ${_selectedPokemonDetails!['weight']}'),
-                          SizedBox(height: 10),
-                          Text(
-                            'Tipos: ${(_selectedPokemonDetails!['types'] as List).join(', ')}',
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            'Estadísticas:',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          ...(_selectedPokemonDetails!['stats'] as List)
-                              .map((stat) => Text(
-                                  '${stat['name']}: ${stat['value']}'))
-                              .toList(),
-                        ],
-                      ),
+    ? Center(child: CircularProgressIndicator())
+    : _errorMessage != null
+        ? Center(child: Text(_errorMessage!))
+        : _selectedPokemonDetails == null
+            ? Center(child: Text('Busca un Pokémon para ver sus detalles.'))
+            : Center( // Este widget centra la tarjeta en toda la pantalla
+                child: SingleChildScrollView(
+                  child: Container(
+                    margin: EdgeInsets.all(16), // Margen externo
+                    padding: EdgeInsets.all(16), // Espaciado interno
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12), // Bordes redondeados
+                      border: Border.all(color: Colors.blueAccent, width: 2), // Borde azul
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.3), // Sombra ligera
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
                     ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        _selectedPokemonDetails!['image'] != null
+                            ? Image.network(_selectedPokemonDetails!['image'])
+                            : Icon(Icons.image_not_supported, size: 100),
+                        SizedBox(height: 10),
+                        Text(
+                          _selectedPokemonDetails!['name'].toUpperCase(),
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blueAccent,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Altura: ${_selectedPokemonDetails!['height']}',
+                          style: TextStyle(fontSize: 18, color: Colors.black87),
+                        ),
+                        Text(
+                          'Peso: ${_selectedPokemonDetails!['weight']}',
+                          style: TextStyle(fontSize: 18, color: Colors.black87),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Tipos: ${(_selectedPokemonDetails!['types'] as List).join(', ')}',
+                          style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Estadísticas:',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.blueAccent,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        ...(_selectedPokemonDetails!['stats'] as List).map((stat) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(vertical: 4),
+                            child: Text(
+                              '${stat['name']}: ${stat['value']}',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+
     );
   }
 }
